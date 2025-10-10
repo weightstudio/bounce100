@@ -1,205 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>股市Coding 隱私權政策</title>
-	<style type="text/css">
-        body {
-            font-family: "'Whitney SSm A','Whitney SSm B',sans-serif";
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            background-color: #f8f9f9;
-        }
+  <!-- 將由 JS 注入正確標題與描述 -->
+  <title>Loading…</title>
+  <meta name="description" content="Loading…" />
 
-        .container {
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+  <link rel="icon" type="image/png" href="./res/GameIcon.png" />
+  <meta property="og:title" content="Loading…" />
+  <meta property="og:description" content="Loading…" />
+  <meta property="og:image" content="https://stockcoding.github.io/bounce100/res/GameIcon.png" />
+  <meta property="og:type" content="website" />
 
-            padding-bottom: 20px;
-        }
+  <style>
+    :root{
+      --bg:#0b0c10; --card:#111317; --muted:#8892a6; --text:#e7ecf7;
+      --accent:#4da3ff; --ring: rgba(77,163,255,.35); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; line-height:1.7}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .container{max-width:980px;margin:auto;padding:24px}
+    .card{background:linear-gradient(180deg,#0f1218 0%,#0c0f14 100%);border:1px solid #1a2330;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.35);padding:24px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+    .logo{width:64px;height:64px;border-radius:14px;box-shadow:0 6px 16px var(--ring)}
+    h1{margin:0;font-size:26px}
+    .subtitle{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .hr{height:1px;background:#1a2330;margin:22px 0}
+    footer{color:#99a4b8;font-size:13px;margin-top:22px}
+    ul{padding-left:20px;margin:8px 0}
+    .muted{color:var(--muted)}
 
-        h1, h2 {
-            text-align: center;
-        }
+    /* 單一語言切換器（全頁生效） */
+    .lang-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+    .lang-btn{padding:8px 14px;border:1px solid #1a2330;background:#0e1621;color:#cfe0ff;border-radius:10px;cursor:pointer;font-size:14px}
+    .lang-btn[aria-selected="true"]{outline:2px solid rgba(77,163,255,.5)}
 
-        table {
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #000;
-        }
-
-        th, td {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .sp1 {
-            display: none;
-        }
-    </style>
+    /* 語系內容顯示/隱藏 */
+    [data-lang]{display:none}
+    [data-lang].is-active{display:block}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>股市Coding 隱私權政策</h1>
-        <p class="last-updated">最後更新日期：2024年8月20日</p>
-        <p>本隱私政策說明了我們在您使用本服務時對您的信息收集、使用和披露的政策與流程，並告知您關於您的隱私權以及法律如何保護您。</p>
-        <p>我們使用您的個人資料來提供並改進本服務。通過使用本服務，您同意根據本隱私政策收集和使用信息。本隱私政策由隱私政策生成器協助創建。</p>
-        
-        <h1>解釋與定義</h1>
-        
-        <h3>解釋</h3>
-        <p>首字母大寫的詞語在以下條件下具有特定含義。無論這些詞語是單數還是複數形式，它們的含義相同。</p>
-        
-        <h3>定義</h3>
+  <div class="container">
+    <div class="card">
+      <!-- Header -->
+      <header>
+        <img src="./res/GameIcon.png" alt="App Icon" class="logo" />
+        <div>
+          <h1><span data-game-name></span>｜<span data-i18n="title">隱私權</span></h1>
+          <p class="subtitle">
+            <span data-i18n="last-updated">最後更新日期</span>：
+            <span id="last-updated">2025/10/10</span>
+            &nbsp;·&nbsp;
+            <a href="./index.html">← <span data-i18n="back-home">返回首頁</span></a>
+          </p>
+
+          <!-- ✅ 唯一語言切換器（全頁生效） -->
+          <div class="lang-tabs" role="tablist" aria-label="Language">
+            <button id="btn-zh" class="lang-btn" data-switch-lang="zh" role="tab" aria-selected="true">中文</button>
+            <button id="btn-en" class="lang-btn" data-switch-lang="en" role="tab" aria-selected="false">English</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="hr"></div>
+
+      <!-- ZH (整頁中文內容) -->
+      <section data-lang="zh" class="is-active" role="tabpanel">
+        <p>本政策說明 <strong><span data-game-name></span></strong>（下稱「本服務」）如何蒐集、使用與保護您的個人資料，以及您可如何行使個人資料相關權利。使用本服務即表示您同意依本政策蒐集與處理資料。</p>
+
+        <h2>我們蒐集哪些資料</h2>
         <ul>
-            <li><strong>帳戶：</strong> 指為您創建的一個唯一帳戶，以便訪問我們的服務或服務的部分內容。</li>
-            <li><strong>關聯公司：</strong> 指控制、被控制或與一方共同控制的實體，其中“控制”指擁有50%以上的股份、股權或其他有投票權的證券，能夠選舉董事或其他管理機構。</li>
-            <li><strong>應用程式：</strong> 指由本公司提供的軟體程序“股市Coding”。</li>
-            <li><strong>公司：</strong> 在本協議中稱為“本公司”、“我們”或“我們的”，指股市Coding。</li>
-            <li><strong>國家：</strong> 指台灣。</li>
-            <li><strong>裝置：</strong> 指任何可以訪問本服務的裝置，例如電腦、手機或數位平板。</li>
-            <li><strong>個人資料：</strong> 指與已識別或可識別的個人相關的任何信息。</li>
-            <li><strong>服務：</strong> 指應用程式。</li>
-            <li><strong>服務提供商：</strong> 指代表公司處理數據的任何自然人或法人，指公司聘請的第三方公司或個人，用於協助提供服務、代表公司提供服務、執行與服務相關的任務或協助公司分析服務的使用情況。</li>
-            <li><strong>第三方社交媒體服務：</strong> 指用戶可以通過其登錄或創建帳戶以使用服務的任何網站或社交網路網站。</li>
-            <li><strong>使用數據：</strong> 指由服務的使用或服務基礎設施自動收集的數據（例如，頁面訪問的持續時間）。</li>
-            <li><strong>您：</strong> 指訪問或使用服務的個人，或代表該個人訪問或使用服務的公司或其他法律實體（如適用）。</li>
+          <li><strong>您主動提供：</strong> 暱稱、顯示名稱；（若有）電子郵件或第三方登入提供之公開資訊。</li>
+          <li><strong>系統自動產生：</strong> 排行榜與遊戲紀錄（分數、排名）、裝置與技術資訊（IP、OS/App 版本）、使用分析、崩潰日誌。</li>
         </ul>
-		<br>
-		
-		
-		<h2>收集和使用您的個人資料</h2>
-		<h3>收集的數據類型</h3>
-		
-		<h4>個人資料</h4>
-		<p>在您使用我們的服務時，我們可能會要求您提供某些可識別個人身份的信息，以便聯繫或識別您。可識別個人身份的信息可能包括但不限於：</p>
-		<ul>
-			<li>電子郵件地址</li>
-			<li>姓名</li>
-			<li>使用數據</li>
-		</ul>
-		
-		<h4>使用數據</h4>
-		<p>使用數據在使用服務時自動收集。</p>
-		<p>使用數據可能包括諸如您的裝置的互聯網協議地址（例如 IP 地址）、瀏覽器類型、瀏覽器版本、您訪問我們服務的頁面、您訪問的時間和日期、您在這些頁面上停留的時間、唯一設備識別碼以及其他診斷數據等信息。</p>
-		
-		<p>當您通過移動裝置訪問服務時，我們可能會自動收集某些信息，包括但不限於您使用的移動裝置類型、移動裝置的唯一 ID、移動裝置的 IP 地址、移動操作系統、您使用的移動互聯網瀏覽器類型、唯一設備識別碼以及其他診斷數據。</p>
-		
-		<p>我們也可能收集您的瀏覽器在您訪問我們的服務時或通過移動裝置訪問服務時所發送的信息。</p>
-		<br>
-		
-		
-		<h2>來自第三方社交媒體服務的信息</h2>
-		<p>本公司允許您通過以下第三方社交媒體服務創建帳戶並登錄以使用服務：</p>
-		<ul>
-			<li>Google</li>
-			<li>Facebook</li>
-			<li>Instagram</li>
-			<li>Twitter</li>
-			<li>LinkedIn</li>
-		</ul>
-		<p>
-			如果您決定通過或以其他方式授權我們訪問第三方社交媒體服務，我們可能會收集與您的第三方社交媒體帳戶相關的個人資料，例如您的姓名、電子郵件地址、活動或該帳戶相關的聯絡人名單。
-		</p>
-		<p>
-			您也可以選擇通過第三方社交媒體帳戶與公司分享額外的信息。如果您選擇在註冊期間或以其他方式提供此類信息和個人資料，即表示您授權公司根據本隱私政策使用、共享和存儲這些資料。
-		</p>
-		<br>
-		
-		
-		<h2>使用您的個人資料</h2>
-		<p>本公司可能將個人資料用於以下目的：</p>
-		<ul>
-			<li>提供並維護我們的服務，包括監控我們服務的使用情況。</li>
-			<li>管理您的帳戶：管理您作為服務用戶的註冊。您提供的個人資料可讓您訪問作為註冊用戶可用的不同服務功能。</li>
-			<li>履行合約：開發、執行和履行您通過服務與我們訂立的產品、物品或服務的購買合同或其他合同。</li>
-			<li>聯繫您：通過電子郵件、電話、SMS 或其他電子通訊方式（如移動應用程式的推播通知）聯繫您，關於功能、產品或所訂購服務的更新或信息傳達，包括必要或合理的安全更新。</li>
-			<li>向您提供新聞、特別優惠以及我們提供的與您已購買或查詢的產品相似的其他商品、服務和活動的一般信息，除非您選擇不接收此類信息。</li>
-			<li>管理您的請求：處理和管理您對我們的請求。</li>
-			<li>企業轉移：我們可能會使用您的信息來評估或進行合併、分拆、重組、解散或其他全部或部分資產的出售或轉移，無論是持續經營還是作為破產、清算或類似程序的一部分，其中我們持有的服務用戶的個人資料是被轉移的資產之一。</li>
-			<li>其他用途：我們可能會將您的信息用於其他用途，例如數據分析、識別使用趨勢、評估我們推廣活動的有效性以及改進我們的服務、產品、服務、營銷和您的體驗。</li>
-		</ul>
 
-		<p>我們可能在以下情況下共享您的個人信息：</p>
-		<ul>
-			<li><strong>與服務提供商：</strong>我們可能與服務提供商共享您的個人信息，以監控和分析我們服務的使用情況，並與您聯繫。</li>
-			<li><strong>企業轉移：</strong>在合併、公司資產出售、融資或將我們全部或部分業務轉讓給另一家公司時，我們可能會在談判過程中或在交易中共享或轉移您的個人信息。</li>
-			<li><strong>與關聯公司：</strong>我們可能會與我們的關聯公司共享您的信息，在此情況下，我們會要求這些關聯公司遵守本隱私政策。關聯公司包括我們的母公司及我們控制或與我們共同控制的任何其他子公司、合資夥伴或公司。</li>
-			<li><strong>與業務合作夥伴：</strong>我們可能會與我們的業務合作夥伴共享您的信息，以向您提供特定產品、服務或促銷活動。</li>
-			<li><strong>與其他用戶：</strong>當您與其他用戶在公共區域共享個人信息或進行互動時，此信息可能會被所有用戶查看，並可能公開分發。如果您通過第三方社交媒體服務與其他用戶互動或註冊，您的第三方社交媒體服務上的聯絡人可能會看到您的姓名、個人資料、圖片和活動描述。同樣，其他用戶也可以查看您的活動描述、與您交流並查看您的個人資料。</li>
-			<li><strong>經您的同意：</strong>在您的同意下，我們可能會為任何其他目的披露您的個人信息。</li>
-		</ul>
-		<br>
-		
-		<h2>個人資料的保留</h2>
-		<p>公司將僅在達成本隱私政策所述目的所需的期間內保留您的個人資料。我們會在遵守法律義務（例如，如果我們需要保留您的數據以遵守適用法律）、解決爭議以及執行我們的法律協議和政策的必要範圍內保留和使用您的個人資料。</p>
-		<p>公司還會為內部分析目的保留使用數據。使用數據通常保留時間較短，但若此數據用於強化安全性或改進我們服務的功能，或者我們在法律上有義務長期保留此數據，則會延長保留時間。</p>
-		<br>
+        <h2>蒐集目的與使用方式</h2>
+        <ul>
+          <li>提供與維運服務（顯示排行榜、儲存分數與進度）。</li>
+          <li>改善遊戲體驗與效能之分析。</li>
+          <li>安全與防濫用（反作弊、維持排行榜公平）。</li>
+          <li>（選用）提供更新與重要變更之通知。</li>
+        </ul>
 
-		<h2>個人資料的轉移</h2>
-		<p>您的信息（包括個人資料）會在公司的運營辦公室以及參與處理的各方所在的地點進行處理。這表示您的信息可能會轉移至並保存在您所在的州、省、國家或其他政府管轄範圍以外的電腦上，而該地的數據保護法可能與您所在地的法律不同。</p>
-		<p>您同意本隱私政策並提交此類信息，即表示您同意該轉移。</p>
-		<p>公司將採取所有合理必要的步驟，以確保您的數據得到安全處理並符合本隱私政策，且在沒有適當的控制措施（包括您數據和其他個人信息的安全）下，不會將您的個人資料轉移至任何組織或國家。</p>
-		<br>
+        <h2>第三方服務</h2>
+        <p class="muted">本服務可能使用平台或第三方（例如 Google Play Games、Apple Game Center、Sign in with Apple、Firebase 等）以提供登入、排行榜、雲端儲存或分析等功能；其資料處理遵循各服務之隱私權政策。</p>
 
-		<h2>刪除您的個人資料</h2>
-		<p>您有權刪除或請求我們協助刪除我們收集的關於您的個人資料。</p>
-		<p>我們的服務可能讓您可以在服務內刪除某些有關您的信息。</p>
-		<p>如果您有帳戶，您可以隨時登錄帳戶並前往帳戶設置區域，以更新、修改或刪除您的信息。您也可以聯繫我們，以請求訪問、修改或刪除您提供給我們的任何個人信息。</p>
-		<p>請注意，我們可能需要在法律義務或合法依據的情況下保留某些信息。</p>
-		<br>
+        <h2>資料保存期間</h2>
+        <p>我們會於達成蒐集目的所需期間內保存資料，並依法律義務、爭議處理或安全需求而適度延長。您得依「資料主體權利」要求刪除或存取。</p>
 
-		<h2>個人資料的披露</h2>
-		<h3>商業交易</h3>
-		<p>如果公司參與合併、收購或資產出售，您的個人資料可能會被轉移。我們將在您的個人資料被轉移並受到不同隱私政策的約束之前通知您。</p>
+        <h2>如何刪除或移除資料（Android／iOS 通用）</h2>
+        <ul>
+          <li><strong>平台帳號資料（排行榜、成就、平台登入）：</strong>
+            若您使用 <em>Google Play Games</em>（Android）或 <em>Apple Game Center / Sign in with Apple</em>（iOS），該等資料通常由平台管理。您可以：
+            <ul>
+              <li><strong>Android（Google Play Games）：</strong> Play 商店 App → 設定 → <em>Play 遊戲設定</em> → <em>隱私與設定</em> → <em>刪除個人檔案與遊戲資料</em>，在列表中選擇 <span data-game-name></span>；或至 Google 帳號的「第三方存取權」移除本服務之存取。</li>
+              <li><strong>iOS（Game Center / Sign in with Apple）：</strong> 設定 → Game Center 管理您的帳號；若使用「使用 Apple 登入」，請至 <em>設定 → Apple ID → 密碼與安全性 → 使用 Apple ID 的 App</em>（或 <em>appleid.apple.com</em>）選取本服務並停止使用。若遊戲資料儲存在 iCloud，請至 <em>設定 → Apple ID → iCloud → 管理儲存空間</em> 找到本服務並刪除資料。</li>
+            </ul>
+          </li>
+          <li><strong>我們自行保存的資料（如有）：</strong> 若我們另行保存您的資料（例如聯絡 Email 或備份暱稱），您可透過下方聯絡方式提出刪除請求，我們將協助刪除。</li>
+        </ul>
 
-		<h3>執法要求</h3>
-		<p>在某些情況下，公司可能需要在法律要求或應公共機構（例如法院或政府機構）的有效請求下披露您的個人資料。</p>
-		<br>
+        <h2>資料分享與揭露</h2>
+        <ul>
+          <li>受託之服務供應商（僅限提供服務必要之範圍）。</li>
+          <li>依法令或政府機關合法請求。</li>
+          <li>維護合法權益、防止詐欺或保護使用者安全。</li>
+          <li>經您同意之其他情形。</li>
+        </ul>
 
+        <h2>資料安全與跨境傳輸</h2>
+        <p>我們採取合理之技術與管理措施保護資料；資料可能在不同司法轄區處理與保存，使用本服務即表示您同意此類跨境傳輸。</p>
 
-		<h2>其他法律要求</h2>
-		<p>公司可能會在真誠地認為以下情況是必要的情況下披露您的個人資料：</p>
-		<ul>
-			<li>遵守法律義務</li>
-			<li>保護並捍衛公司的權利或財產</li>
-			<li>防止或調查與服務相關的潛在不當行為</li>
-			<li>保護服務用戶或公眾的個人安全</li>
-			<li>防範法律責任</li>
-		</ul>
-		<br>
+        <h2>您的權利</h2>
+        <p>您可請求存取、更正、刪除、或限制處理等權利；我們可能需驗證您的身分後再處理。</p>
 
-		<h2>您的個人資料的安全</h2>
-		<p>我們非常重視您的個人資料的安全，但請記住，互聯網傳輸或電子存儲方法並非100%安全。我們會盡力使用商業上可接受的手段來保護您的個人資料，但無法保證其絕對安全。</p>
-		<br>
+        <h2>政策變更</h2>
+        <p>本政策可能因服務或法規調整而更新；重大變更將於頁面公告並更新「最後更新日期」。</p>
 
-		<h2>兒童隱私</h2>
-		<p>我們的服務不針對13歲以下的人群。我們不會有意收集13歲以下人士的可識別個人信息。如果您是家長或監護人，且知道您的孩子向我們提供了個人資料，請與我們聯繫。如果我們發現未經父母同意的情況下收集了13歲以下的個人資料，我們將採取措施從我們的服務器中刪除該信息。</p>
-		<p>如果我們需要依賴同意作為處理您信息的法律依據，而您的國家要求父母同意，我們可能會在收集和使用該信息之前需要您父母的同意。</p>
-		<br>
+        <h2>聯絡我們</h2>
+        <ul>
+          <li>Linktree：<a href="https://linktr.ee/stockcoding" target="_blank" rel="noopener">https://linktr.ee/stockcoding</a></li>
+          <li>Email：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
+        </ul>
+      </section>
 
-		<h2>鏈接至其他網站</h2>
-		<p>我們的服務可能包含非我們運營的其他網站鏈接。如果您點擊第三方鏈接，將會導向該第三方的網站。我們強烈建議您查看您所訪問的每個網站的隱私政策。</p>
-		<p>我們無法控制且不承擔任何第三方網站或服務的內容、隱私政策或做法的責任。</p>
-		<br>
+      <!-- EN (整頁英文內容) -->
+      <section data-lang="en" role="tabpanel" aria-hidden="true">
+        <p>This policy explains how <strong><span data-game-name></span></strong> (“the Service”) collects, uses, and protects your data, and how you can exercise your rights. By using the Service, you consent to the practices described herein.</p>
 
-		<h2>隱私政策的變更</h2>
-		<p>我們可能會不時更新我們的隱私政策。我們會通過在此頁面發布新的隱私政策來通知您任何變更。</p>
-		<p>在變更生效前，我們將通過電子郵件和/或我們服務上的顯著通知告知您，並更新本隱私政策頂部的“最後更新”日期。</p>
-		<p>建議您定期查看本隱私政策的任何更改。本隱私政策的更改自發布於此頁面時生效。</p>
-		<br>
+        <h2>Data We Collect</h2>
+        <ul>
+          <li><strong>Provided by you:</strong> nickname/display name; (if applicable) email or public info from third-party sign-in.</li>
+          <li><strong>Generated by the Service:</strong> leaderboard/game records (scores, rankings), device/technical info (IP, OS/App version), usage analytics, crash logs.</li>
+        </ul>
 
-		<h2>聯絡我們</h2>
-		<p>如果您有任何疑問，您可以通過以下方式聯繫我們：</p>
-		<ul>
-			<li>請至 <a href="https://linktr.ee/stockcoding">聯繫方式</a> 聯繫我們。</li>
-			<li>電子郵件：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
-		</ul>
+        <h2>How We Use Data</h2>
+        <ul>
+          <li>Provide and operate the Service (leaderboards, progress storage).</li>
+          <li>Improve gameplay and performance via analytics.</li>
+          <li>Security and anti-abuse (anti-cheat, ranking fairness).</li>
+          <li>(Optional) Notify you of updates and important changes.</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p class="muted">The Service may use platforms or third parties (e.g., Google Play Games, Apple Game Center, Sign in with Apple, Firebase) for sign-in, leaderboards, cloud save, or analytics; their processing follows their respective privacy policies.</p>
+
+        <h2>Retention</h2>
+        <p>Data is retained for as long as necessary for the purposes above and for legal, dispute-resolution, or security needs. You may request deletion or access as described below.</p>
+
+        <h2>How to Delete or Remove Access (Android / iOS)</h2>
+        <ul>
+          <li><strong>Platform account data (leaderboards, achievements, platform sign-in):</strong>
+            If you use <em>Google Play Games</em> (Android) or <em>Apple Game Center / Sign in with Apple</em> (iOS), such data is typically managed by the platform. You can:
+            <ul>
+              <li><strong>Android (Google Play Games):</strong> Play Store app → Settings → <em>Play Games Settings</em> → <em>Privacy & settings</em> → <em>Delete your Play Games data</em>, then select <span data-game-name></span>; or remove the app’s access from your Google Account’s “Third-party access”.</li>
+              <li><strong>iOS (Game Center / Sign in with Apple):</strong> Settings → Game Center; and for “Sign in with Apple”, go to <em>Settings → Apple ID → Password & Security → Apps Using Apple ID</em> (or <em>appleid.apple.com</em>) to stop using Apple ID with this app. If game data is stored in iCloud, go to <em>Settings → Apple ID → iCloud → Manage Storage</em> to delete the app’s data.</li>
+            </ul>
+          </li>
+          <li><strong>Data we store ourselves (if any):</strong> If we store additional data (e.g., contact email or backup nickname), contact us via the channels below and we will delete it upon request.</li>
+        </ul>
+
+        <h2>Sharing, Security, Cross-Border</h2>
+        <ul>
+          <li>Shared with service providers under necessity and safeguards; disclosed when required by law or to protect rights/safety.</li>
+          <li>We apply reasonable technical/organizational measures; no method is 100% secure.</li>
+          <li>Data may be processed in other jurisdictions; by using the Service, you consent to such transfers.</li>
+        </ul>
+
+        <h2>Your Rights</h2>
+        <p>Subject to applicable law, you may request access, correction, deletion, or restriction. We may need to verify your identity.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy; material changes will be announced on this page with the “Last Updated” date.</p>
+
+        <h2>Contact</h2>
+        <ul>
+          <li>Linktree: <a href="https://linktr.ee/stockcoding" target="_blank" rel="noopener">https://linktr.ee/stockcoding</a></li>
+          <li>Email: <a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
+        </ul>
+      </section>
+
+      <footer>
+        <div class="hr"></div>
+        © <span id="y"></span> <span data-site-title></span>. All rights reserved.
+      </footer>
     </div>
+  </div>
+
+  <!-- 變數注入 + 全頁語言切換（只有頂部按鈕） -->
+  <script>
+    // ===== 基本常數（只改這裡） =====
+    const GAME_NAME_EN = "Bonuce100";    // 只顯示英文名稱
+    const SITE_TITLE   = "StockCoding";  // 站名（頁尾）
+
+    // 多語字典（標題/提示）
+    const I18N = {
+      zh: {
+        title: "隱私權",
+        "last-updated": "最後更新日期",
+        "back-home": "返回首頁",
+        metaTitle: (name)=> `${name} | 隱私權`,
+        metaDesc:  (name)=> `${name} 隱私權政策：通用 Android／iOS 刪除資料指引（平台登入、排行榜、雲端）。`,
+      },
+      en: {
+        title: "Privacy Policy",
+        "last-updated": "Last Updated",
+        "back-home": "Back to Home",
+        metaTitle: (name)=> `${name} | Privacy Policy`,
+        metaDesc:  (name)=> `${name} Privacy Policy: cross-platform (Android/iOS) data deletion guidance (platform sign-in, leaderboards, cloud).`,
+      }
+    };
+
+    // ===== 注入共用文字 =====
+    const ensureMeta = (q,a,n)=>{let el=document.querySelector(q);if(!el){el=document.createElement('meta');el.setAttribute(a,n);document.head.appendChild(el);}return el;}
+    const setMeta = (lang)=>{
+      const dict = I18N[lang];
+      document.title = dict.metaTitle(GAME_NAME_EN);
+      ensureMeta('meta[name="description"]','name','description').setAttribute('content', dict.metaDesc(GAME_NAME_EN));
+      ensureMeta('meta[property="og:title"]','property','og:title').setAttribute('content', document.title);
+      ensureMeta('meta[property="og:description"]','property','og:description').setAttribute('content', dict.metaDesc(GAME_NAME_EN));
+      document.documentElement.lang = (lang === 'en' ? 'en' : 'zh-Hant');
+    };
+
+    // 固定注入顯示名稱與站名
+    document.querySelectorAll('[data-game-name]').forEach(el=>el.textContent = GAME_NAME_EN);
+    document.querySelectorAll('[data-site-title]').forEach(el=>el.textContent = SITE_TITLE);
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== 單一語言切換器控制全頁 =====
+    (function(){
+      const KEY='lang_pref';
+      const btnZh = document.getElementById('btn-zh');
+      const btnEn = document.getElementById('btn-en');
+
+      const applyStatics = (lang)=>{
+        const dict = I18N[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el=>{
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.textContent = dict[key];
+        });
+      };
+
+      const apply = (lang)=>{
+        // 顯示/隱藏所有 data-lang
+        document.querySelectorAll('[data-lang]').forEach(p=>{
+          const on = p.getAttribute('data-lang')===lang;
+          p.classList.toggle('is-active', on);
+          p.setAttribute('aria-hidden', !on);
+        });
+        // 按鈕狀態
+        btnZh.setAttribute('aria-selected', lang==='zh');
+        btnEn.setAttribute('aria-selected', lang==='en');
+        // 更新靜態字與 SEO/OG
+        applyStatics(lang);
+        setMeta(lang);
+      };
+
+      const initLang = localStorage.getItem(KEY) || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+      apply(initLang);
+
+      btnZh.addEventListener('click', ()=>{ localStorage.setItem(KEY,'zh'); apply('zh'); });
+      btnEn.addEventListener('click', ()=>{ localStorage.setItem(KEY,'en'); apply('en'); });
+
+      // 若想自動更新日期，解除註解：
+      // const d=new Date(),pad=n=>String(n).padStart(2,'0');
+      // document.getElementById('last-updated').textContent = `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())}`;
+    })();
+  </script>
 </body>
 </html>
