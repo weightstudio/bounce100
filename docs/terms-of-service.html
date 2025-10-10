@@ -1,97 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>股市Coding 服務條款</title>
-	<style type="text/css">
-        body {
-            font-family: "'Whitney SSm A','Whitney SSm B',sans-serif";
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            background-color: #f8f9f9;
-        }
+  <!-- 由 JS 依語言注入正確標題與描述 -->
+  <title>Loading…</title>
+  <meta name="description" content="Loading…" />
 
-        .container {
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+  <link rel="icon" type="image/png" href="./res/GameIcon.png" />
+  <meta property="og:title" content="Loading…" />
+  <meta property="og:description" content="Loading…" />
+  <meta property="og:image" content="https://stockcoding.github.io/bounce100/res/GameIcon.png" />
+  <meta property="og:type" content="website" />
 
-            padding-bottom: 20px;
-        }
+  <style>
+    :root{
+      --bg:#0b0c10; --card:#111317; --muted:#8892a6; --text:#e7ecf7;
+      --accent:#4da3ff; --ring: rgba(77,163,255,.35); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; line-height:1.7}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .container{max-width:980px;margin:auto;padding:24px}
+    .card{background:linear-gradient(180deg,#0f1218 0%,#0c0f14 100%);border:1px solid #1a2330;border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.35);padding:24px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+    .logo{width:64px;height:64px;border-radius:14px;box-shadow:0 6px 16px var(--ring)}
+    h1{margin:0;font-size:26px}
+    .subtitle{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .hr{height:1px;background:#1a2330;margin:22px 0}
+    footer{color:#99a4b8;font-size:13px;margin-top:22px}
+    ul{padding-left:20px;margin:8px 0}
+    .muted{color:var(--muted)}
 
-        h1, h2 {
-            text-align: center;
-        }
+    /* 單一語言切換器（全頁生效） */
+    .lang-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+    .lang-btn{padding:8px 14px;border:1px solid #1a2330;background:#0e1621;color:#cfe0ff;border-radius:10px;cursor:pointer;font-size:14px}
+    .lang-btn[aria-selected="true"]{outline:2px solid rgba(77,163,255,.5)}
 
-		p1 {
-			margin-bottom: 50px;
-		}
-		
-        table {
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #000;
-        }
-
-        th, td {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .sp1 {
-            display: none;
-        }
-    </style>
+    /* 語系內容顯示/隱藏 */
+    [data-lang]{display:none}
+    [data-lang].is-active{display:block}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>股市Coding 服務條款</h1>
-        <p class="last-updated">最後更新日期：2024年8月20日</p>
-		<p>請您在使用 <strong>股市Coding</strong> 之前，仔細閱讀以下服務條款。使用本應用即表示您同意本服務條款的所有內容。如果您不同意此條款，請勿使用本應用。</p>
-		
-		<h3>1. 服務介紹</h3>
-		<p><strong>股市Coding</strong>（以下簡稱「本應用」）提供大數據分析工具，將所有重點訊號進行統計，並將數據提供給使用者。使用本應用即代表您理解並接受本應用的服務範圍及其限制。</p>
-		<br>
+  <div class="container">
+    <div class="card">
+      <!-- Header -->
+      <header>
+        <img src="./res/GameIcon.png" alt="App Icon" class="logo" />
+        <div>
+          <h1><span data-game-name></span>｜<span data-i18n="title">服務條款</span></h1>
+          <p class="subtitle">
+            <span data-i18n="last-updated">最後更新日期</span>：
+            <span id="last-updated">2025/10/10</span>
+            &nbsp;·&nbsp;
+            <a href="./index.html">← <span data-i18n="back-home">返回首頁</span></a>
+          </p>
 
-		<h3>2. 用戶行為規範</h3>
-		<p>在使用本應用時，您承諾：</p>
-		<ul>
-			<li>遵守所有適用的法律法規；</li>
-			<li>不從事任何干擾本應用正常運行的行為；</li>
-			<li>不以任何方式侵犯其他用戶或第三方的權利。</li>
-		</ul>
-		<br>
+          <!-- ✅ 唯一語言切換器（全頁生效） -->
+          <div class="lang-tabs" role="tablist" aria-label="Language">
+            <button id="btn-zh" class="lang-btn" data-switch-lang="zh" role="tab" aria-selected="true">中文</button>
+            <button id="btn-en" class="lang-btn" data-switch-lang="en" role="tab" aria-selected="false">English</button>
+          </div>
+        </div>
+      </header>
 
-		<h3>3. 知識產權</h3>
-		<p>本應用中所有內容（包括但不限於文字、圖片、代碼及設計）均屬於 <strong>股市Coding</strong> 或其授權方的財產，受版權法和知識產權法的保護。未經授權，您不得轉載、修改、分發或以其他方式使用本應用內容。</p>
-		<br>
+      <div class="hr"></div>
 
-		<h3>4. 責任限制</h3>
-		<p>在適用法律允許的範圍內，對於因使用或無法使用本應用而引起的任何損失，我們不承擔任何責任。您使用本應用的風險由您自行承擔。</p>
-		<br>
+      <!-- ZH (整頁中文內容) -->
+      <section data-lang="zh" class="is-active" role="tabpanel">
+        <p>歡迎使用 <strong><span data-game-name></span></strong>（下稱「本服務」）。請於使用前詳閱本服務條款（下稱「本條款」）。您安裝、存取或使用本服務，即表示您同意受本條款之拘束；若您不同意，請勿使用本服務。</p>
 
-		<h3>5. 服務變更和終止</h3>
-		<p>我們保留隨時更改、暫停或終止本應用服務的權利，無需事先通知。在必要時，我們也可能修改或更新本服務條款。建議您定期查看條款的更新內容。</p>
-		<br>
+        <h2>1. 服務內容</h2>
+        <p>本服務為競技型彈跳遊戲，提供分數累積、積分換算與排行榜等功能，並可能透過平台登入（例如 Google Play Games、Sign in with Apple / Game Center）建立或同步遊戲紀錄。</p>
 
-		<h3>6. 隱私政策</h3>
-		<p>本應用的隱私政策是本服務條款的一部分，關於我們如何收集、使用和保護您的個人資料，請參考 <a href="/privacy-policy.html" target="_blank">隱私政策的連結</a>。</p>
-		<br>
+        <h2>2. 帳號與平台登入</h2>
+        <ul>
+          <li>您可能需使用第三方平台帳號登入以使用排行榜或雲端同步等功能。</li>
+          <li>您應負責維護帳號與裝置之安全；因您的疏忽導致之損害（含帳號被不當使用）由您自行承擔。</li>
+        </ul>
 
-		<h3>7. 爭議解決</h3>
-		<p>本服務條款適用於 <strong>台灣</strong> 的法律。若您與我們之間發生任何糾紛，應通過友好協商解決；若協商不成，雙方同意將爭議提交至 <strong>台北</strong> 的相關法院解決。</p>
-		<br>
+        <h2>3. 公平使用與禁止事項</h2>
+        <ul>
+          <li>禁止任何形式之作弊、外掛、修改用戶端或協議攔截等影響公平之行為。</li>
+          <li>禁止利用漏洞、干擾伺服器、偽造或操縱分數／排名。</li>
+          <li>禁止發布侵權、違法、騷擾或其他不當內容。</li>
+          <li>違反者我們得視情節採取包括但不限於：重置分數、封鎖排行榜、暫停或終止使用權等措施。</li>
+        </ul>
 
-		<h3>8. 聯繫我們</h3>
-		<p>如果您有任何疑問，您可以通過以下方式聯繫我們：</p>
-		<ul>
-			<li>請至 <a href="https://linktr.ee/stockcoding">聯繫方式</a> 聯繫我們。</li>
-			<li>電子郵件：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
-		</ul>
+        <h2>4. 內容與智慧財產權</h2>
+        <p>本服務及其相關內容（包含但不限於程式碼、介面、圖像、音效、文字與設計）之權利屬於 <strong>StockCoding</strong> 或其授權方所有。未經書面同意，您不得重製、散布、修改、反向工程或另行利用。</p>
+
+        <h2>5. 未成年人</h2>
+        <p>若您未達您所屬法域之法定年齡，應在法定代理人同意與監護下使用本服務。法定代理人應負監督責任。</p>
+
+        <h2>6. 隱私與資料</h2>
+        <p>我們依<a href="./privacy-policy.html" target="_blank" rel="noopener">隱私權政策</a>蒐集、使用與保護資料（例如排行榜用暱稱與分數、裝置信息、使用分析）。平台登入或排行榜資料多由各平台管理，刪除方式請依該政策之 Android／iOS 通用指引操作。</p>
+
+        <h2>7. 服務變更、中斷與終止</h2>
+        <ul>
+          <li>我們得隨時更新、調整或停止本服務之全部或一部，並於必要時公告重大變更。</li>
+          <li>如遇系統維護、法規要求、資安因素或不可抗力等，我們得暫停或中止服務。</li>
+          <li>如您違反本條款或影響其他使用者之權益與安全，我們得限制、暫停或終止您使用本服務。</li>
+        </ul>
+
+        <h2>8. 免責聲明與責任限制</h2>
+        <ul>
+          <li>本服務以「現狀」與「可用性」提供，不保證無錯誤、不中斷或符合您的特定需求。</li>
+          <li>在法律允許最大範圍內，對於因使用或無法使用本服務所生之任何間接、附帶、特別或衍生損害，我們不負賠償責任。</li>
+        </ul>
+
+        <h2>9. 準據法與管轄</h2>
+        <p>本條款以中華民國（台灣）法律為準據法。因本條款或本服務所生之爭議，雙方同意以臺灣臺北地方法院為第一審管轄法院。</p>
+
+        <h2>10. 條款變更與通知</h2>
+        <p>我們可能不時修訂本條款，重大變更將於本頁公告並更新「最後更新日期」。變更後您持續使用，即視為同意更新內容。</p>
+
+        <h2>11. 文字與語言</h2>
+        <p>本條款提供中英文版本；如解釋有歧異，以最新發布之中文版本為準（除非法規另有強制規定）。</p>
+
+        <h2>12. 聯絡我們</h2>
+        <ul>
+          <li>Linktree：<a href="https://linktr.ee/stockcoding" target="_blank" rel="noopener">https://linktr.ee/stockcoding</a></li>
+          <li>Email：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
+        </ul>
+      </section>
+
+      <!-- EN (整頁英文內容) -->
+      <section data-lang="en" role="tabpanel" aria-hidden="true">
+        <p>Welcome to <strong><span data-game-name></span></strong> (the “Service”). Please read these Terms of Service (“Terms”) carefully. By installing, accessing, or using the Service, you agree to be bound by these Terms. If you do not agree, do not use the Service.</p>
+
+        <h2>1. Service</h2>
+        <p>The Service is a competitive bouncing game that provides point accumulation, score conversion, and leaderboards. Player records may be created or synchronized via platform sign-in (e.g., Google Play Games, Sign in with Apple / Game Center).</p>
+
+        <h2>2. Accounts & Platform Sign-in</h2>
+        <ul>
+          <li>You may need a third-party platform account to access leaderboards or cloud features.</li>
+          <li>You are responsible for safeguarding your account and device. Losses arising from your negligence (including unauthorized use) are your responsibility.</li>
+        </ul>
+
+        <h2>3. Fair Play & Prohibited Conduct</h2>
+        <ul>
+          <li>No cheating, exploits, bots, client tampering, or protocol interception affecting fair play.</li>
+          <li>No server interference, falsifying or manipulating scores/rankings.</li>
+          <li>No infringing, unlawful, harassing, or otherwise inappropriate content.</li>
+          <li>We may reset scores, block leaderboard access, suspend, or terminate your access for violations.</li>
+        </ul>
+
+        <h2>4. Content & IP</h2>
+        <p>All rights in and to the Service and related content (including code, UI, artwork, audio, text, and design) are owned by <strong>StockCoding</strong> or its licensors. You may not reproduce, distribute, modify, reverse engineer, or otherwise exploit without written permission.</p>
+
+        <h2>5. Minors</h2>
+        <p>If you are under the legal age in your jurisdiction, you must use the Service with the consent and supervision of a legal guardian, who is responsible for such use.</p>
+
+        <h2>6. Privacy & Data</h2>
+        <p>We collect and use data as described in our <a href="./privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a> (e.g., nickname and scores for leaderboards, device info, usage analytics). Platform sign-in or leaderboard data is typically managed by platform providers; deletion follows the Android/iOS guidance in that policy.</p>
+
+        <h2>7. Changes, Suspension & Termination</h2>
+        <ul>
+          <li>We may update, modify, or discontinue all or part of the Service and will announce material changes when necessary.</li>
+          <li>Maintenance, legal requirements, security, or force majeure may cause temporary suspension or discontinuation.</li>
+          <li>We may restrict, suspend, or terminate access if you violate these Terms or harm user safety or experience.</li>
+        </ul>
+
+        <h2>8. Disclaimers & Limitation of Liability</h2>
+        <ul>
+          <li>The Service is provided “as is” and “as available” without warranties of any kind.</li>
+          <li>To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, or consequential damages arising from or related to your use of the Service.</li>
+        </ul>
+
+        <h2>9. Governing Law & Venue</h2>
+        <p>These Terms are governed by the laws of Taiwan (R.O.C.). The Taipei District Court shall have exclusive jurisdiction for the first instance, unless otherwise required by law.</p>
+
+        <h2>10. Changes to Terms</h2>
+        <p>We may revise these Terms from time to time; material changes will be announced on this page with an updated “Last Updated” date. Continued use constitutes acceptance.</p>
+
+        <h2>11. Language</h2>
+        <p>These Terms are provided in Chinese and English. In case of ambiguity, the most recently published Chinese version shall prevail, unless otherwise required by law.</p>
+
+        <h2>12. Contact</h2>
+        <ul>
+          <li>Linktree: <a href="https://linktr.ee/stockcoding" target="_blank" rel="noopener">https://linktr.ee/stockcoding</a></li>
+          <li>Email: <a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
+        </ul>
+      </section>
+
+      <footer>
+        <div class="hr"></div>
+        © <span id="y"></span> <span data-site-title></span>. All rights reserved.
+      </footer>
     </div>
+  </div>
+
+  <!-- 變數注入 + 全頁語言切換（只有頂部按鈕） -->
+  <script>
+    // ===== 基本常數（只改這裡） =====
+    const GAME_NAME_EN = "Bounce100";    // 只顯示英文名稱
+    const SITE_TITLE   = "StockCoding";  // 站名（頁尾/OG）
+
+    // 多語字典（標題/提示）
+    const I18N = {
+      zh: {
+        title: "服務條款",
+        "last-updated": "最後更新日期",
+        "back-home": "返回首頁",
+        metaTitle: (name)=> `${name} | 服務條款`,
+        metaDesc:  (name)=> `${name} 服務條款：公平競賽、平台登入、反作弊、帳號義務、免責與責任限制、準據法與管轄等。`,
+      },
+      en: {
+        title: "Terms of Service",
+        "last-updated": "Last Updated",
+        "back-home": "Back to Home",
+        metaTitle: (name)=> `${name} | Terms of Service`,
+        metaDesc:  (name)=> `${name} Terms of Service: fair play, platform sign-in, anti-cheat, account duties, disclaimers, limitations, governing law, venue.`,
+      }
+    };
+
+    // ===== SEO/OG 注入 =====
+    const ensureMeta = (q,a,n)=>{let el=document.querySelector(q);if(!el){el=document.createElement('meta');el.setAttribute(a,n);document.head.appendChild(el);}return el;}
+    const setMeta = (lang)=>{
+      const dict = I18N[lang];
+      document.title = dict.metaTitle(GAME_NAME_EN);
+      ensureMeta('meta[name="description"]','name','description').setAttribute('content', dict.metaDesc(GAME_NAME_EN));
+      ensureMeta('meta[property="og:title"]','property','og:title').setAttribute('content', document.title);
+      ensureMeta('meta[property="og:description"]','property','og:description').setAttribute('content', dict.metaDesc(GAME_NAME_EN));
+      document.documentElement.lang = (lang === 'en' ? 'en' : 'zh-Hant');
+    };
+
+    // 固定注入顯示名稱與站名
+    document.querySelectorAll('[data-game-name]').forEach(el=>el.textContent = GAME_NAME_EN);
+    document.querySelectorAll('[data-site-title]').forEach(el=>el.textContent = SITE_TITLE);
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== 單一語言切換器控制全頁 =====
+    (function(){
+      const KEY='lang_pref';
+      const btnZh = document.getElementById('btn-zh');
+      const btnEn = document.getElementById('btn-en');
+
+      const applyStatics = (lang)=>{
+        const dict = I18N[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el=>{
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) el.textContent = dict[key];
+        });
+      };
+
+      const apply = (lang)=>{
+        // 顯示/隱藏所有 data-lang
+        document.querySelectorAll('[data-lang]').forEach(p=>{
+          const on = p.getAttribute('data-lang')===lang;
+          p.classList.toggle('is-active', on);
+          p.setAttribute('aria-hidden', !on);
+        });
+        // 按鈕狀態
+        btnZh.setAttribute('aria-selected', lang==='zh');
+        btnEn.setAttribute('aria-selected', lang==='en');
+        // 更新靜態字與 SEO/OG
+        applyStatics(lang);
+        setMeta(lang);
+      };
+
+      const initLang = localStorage.getItem(KEY) || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+      apply(initLang);
+
+      btnZh.addEventListener('click', ()=>{ localStorage.setItem(KEY,'zh'); apply('zh'); });
+      btnEn.addEventListener('click', ()=>{ localStorage.setItem(KEY,'en'); apply('en'); });
+
+      // 想自動更新日期可用下列（預設手動維護）：
+      // const d=new Date(),pad=n=>String(n).padStart(2,'0');
+      // document.getElementById('last-updated').textContent = `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())}`;
+    })();
+  </script>
 </body>
 </html>
