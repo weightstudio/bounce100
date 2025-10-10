@@ -4,18 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- 頁面標題與描述（將由 JS 注入最終文字） -->
+  <!-- 這些文字會在底部 JS 被注入 -->
   <title>Loading…</title>
   <meta name="description" content="Loading…" />
 
-  <!-- Favicon / Open Graph -->
   <link rel="icon" type="image/png" href="./res/GameIcon.png" />
   <meta property="og:title" content="Loading…" />
   <meta property="og:description" content="Loading…" />
   <meta property="og:image" content="https://stockcoding.github.io/bounce100/res/GameIcon.png" />
   <meta property="og:type" content="website" />
 
-  <!-- Styles -->
   <style>
     :root{
       --bg:#0b0c10;
@@ -23,7 +21,6 @@
       --muted:#8892a6;
       --text:#e7ecf7;
       --accent:#4da3ff;
-      --accent-2:#6ee7b7;
       --ring: rgba(77,163,255,.35);
       --radius:18px;
     }
@@ -40,7 +37,7 @@
       border:1px solid #1a2330;border-radius:var(--radius);
       box-shadow:0 10px 30px rgba(0,0,0,.35);padding:24px
     }
-    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
     .logo{width:72px;height:72px;border-radius:16px;box-shadow:0 6px 16px var(--ring)}
     h1{margin:0;font-size:28px;letter-spacing:.3px}
     .subtitle{margin:4px 0 0;color:var(--muted);font-size:14px}
@@ -49,13 +46,28 @@
     @media (min-width: 760px){ .grid-2{grid-template-columns:1fr 1fr} }
     ul{margin:0;padding-left:18px}
     .muted{color:var(--muted)}
-    .screens{display:grid;gap:16px}
-    @media (min-width: 760px){ .screens{grid-template-columns:1fr 1fr} }
-    .shot{width:100%;border-radius:14px;border:1px solid #1b2432;box-shadow:0 8px 22px rgba(0,0,0,.35)}
     .row{display:flex;gap:10px;flex-wrap:wrap}
     .pill{background:#0e1621;border:1px solid #1a2330;color:#cfe0ff;border-radius:999px;padding:6px 12px;font-size:12px}
-    footer{color:#99a4b8;font-size:13px;margin-top:26px}
     .hr{height:1px;background:#1a2330;margin:24px 0}
+    footer{color:#99a4b8;font-size:13px;margin-top:26px}
+
+    /* ✅ 截圖展示：更小、更清楚 */
+    .screens{
+      display:flex;flex-wrap:wrap;justify-content:center;gap:16px
+    }
+    .shot{
+      width:100%;
+      max-width:300px;      /* 行動裝置建議寬度 */
+      height:auto;
+      border-radius:14px;
+      border:1px solid #1b2432;
+      box-shadow:0 4px 10px rgba(0,0,0,.35);
+      object-fit:cover;
+      image-rendering:auto; /* 讓瀏覽器用較佳插值，避免鋸齒 */
+    }
+    @media (min-width: 900px){
+      .shot{ max-width:360px; }  /* 桌機稍大一點仍保持清晰 */
+    }
   </style>
 </head>
 <body>
@@ -118,6 +130,7 @@
           <div>
             <ul>
               <li>本應用可能會收集您的暱稱、分數、裝置資訊與使用數據，僅用於排行榜顯示與體驗分析。</li>
+              <li>若使用第三方登入（例如 Google），僅存取必要的公開資訊以建立遊戲紀錄。</li>
               <li>詳細內容請見：
                 <a href="https://stockcoding.github.io/bounce100/privacy-policy.html" target="_blank" rel="noopener">隱私權政策</a>
               </li>
@@ -152,33 +165,29 @@
     </div>
   </div>
 
-  <!-- Variables & Injection -->
+  <!-- 變數與注入（只要改這裡就能同步全站名稱與文案） -->
   <script>
-    // === 只要改這三個常數，其餘會自動同步 ===
+    // === 只要改這三個常數 ===
     const GAME_NAME_EN = "Bounce100";
     const GAME_NAME_ZH = "彈跳100";
-    const SITE_TITLE   = "StockCoding";
+    const SITE_TITLE   = "股市Coding";
 
-    // === 進階（可選）===
+    // 可選文案
     const TAGLINE_ZH = "累積分數、拿積分、衝排行榜！";
     const TAGLINE_EN = "Climb the global leaderboard!";
 
-    // 組合字串
+    // 組合
     const GAME_NAME_FULL = `${GAME_NAME_EN}（${GAME_NAME_ZH}）`;
     const PAGE_TITLE = `${GAME_NAME_FULL}｜${SITE_TITLE}`;
     const DESC_ZH = `${GAME_NAME_FULL} — 累積分數、拿積分、衝排行榜的競技彈跳遊戲。`;
-    const DESC_EN = `Keep bouncing — collect scores and climb the global leaderboard in ${GAME_NAME_EN}.`;
 
     // 批次注入
     const setText = (sel, text) => document.querySelectorAll(sel).forEach(el => el.textContent = text);
-    setText('[data-game-en]', GAME_NAME_EN);
-    setText('[data-game-zh]', GAME_NAME_ZH);
     setText('[data-game-full]', GAME_NAME_FULL);
     setText('[data-site-title]', SITE_TITLE);
     setText('[data-tagline-zh]', TAGLINE_ZH);
     setText('[data-tagline-en]', TAGLINE_EN);
 
-    // 動態標題/描述/OG
     document.title = PAGE_TITLE;
     const ensureMeta = (selector, attr, name) => {
       let el = document.querySelector(selector);
@@ -188,6 +197,7 @@
     ensureMeta('meta[name="description"]', 'name', 'description').setAttribute('content', `${DESC_ZH}`);
     ensureMeta('meta[property="og:title"]', 'property', 'og:title').setAttribute('content', GAME_NAME_FULL);
     ensureMeta('meta[property="og:description"]', 'property', 'og:description').setAttribute('content', `${DESC_ZH}`);
+
     // 年份
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
