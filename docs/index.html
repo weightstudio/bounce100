@@ -1,98 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
-	<link rel="icon" type="image/png" href="https://stockcoding.github.io/bounce100/res/GameIcon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>股市Coding</title>
-	<style type="text/css">
-        body {
-            font-family: "'Whitney SSm A','Whitney SSm B',sans-serif";
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            background-color: #f8f9f9;
-        }
+  <!-- 頁面標題與描述（將由 JS 注入最終文字） -->
+  <title>Loading…</title>
+  <meta name="description" content="Loading…" />
 
-        .container {
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+  <!-- Favicon / Open Graph -->
+  <link rel="icon" type="image/png" href="./res/GameIcon.png" />
+  <meta property="og:title" content="Loading…" />
+  <meta property="og:description" content="Loading…" />
+  <meta property="og:image" content="https://stockcoding.github.io/bounce100/res/GameIcon.png" />
+  <meta property="og:type" content="website" />
 
-            padding-bottom: 20px;
-        }
-
-        h1, h2 {
-            text-align: center;
-        }
-
-		p1 {
-			margin-bottom: 50px;
-		}
-		
-        table {
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #000;
-        }
-
-        th, td {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        .sp1 {
-            display: none;
-        }
-    </style>
+  <!-- Styles -->
+  <style>
+    :root{
+      --bg:#0b0c10;
+      --card:#111317;
+      --muted:#8892a6;
+      --text:#e7ecf7;
+      --accent:#4da3ff;
+      --accent-2:#6ee7b7;
+      --ring: rgba(77,163,255,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;padding:0;background:var(--bg);color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.6
+    }
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .container{max-width:1000px;margin:auto;padding:24px}
+    .card{
+      background:linear-gradient(180deg, #0f1218 0%, #0c0f14 100%);
+      border:1px solid #1a2330;border-radius:var(--radius);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);padding:24px
+    }
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    .logo{width:72px;height:72px;border-radius:16px;box-shadow:0 6px 16px var(--ring)}
+    h1{margin:0;font-size:28px;letter-spacing:.3px}
+    .subtitle{margin:4px 0 0;color:var(--muted);font-size:14px}
+    h2{font-size:20px;margin:26px 0 12px}
+    .grid{display:grid;gap:16px}
+    @media (min-width: 760px){ .grid-2{grid-template-columns:1fr 1fr} }
+    ul{margin:0;padding-left:18px}
+    .muted{color:var(--muted)}
+    .screens{display:grid;gap:16px}
+    @media (min-width: 760px){ .screens{grid-template-columns:1fr 1fr} }
+    .shot{width:100%;border-radius:14px;border:1px solid #1b2432;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{background:#0e1621;border:1px solid #1a2330;color:#cfe0ff;border-radius:999px;padding:6px 12px;font-size:12px}
+    footer{color:#99a4b8;font-size:13px;margin-top:26px}
+    .hr{height:1px;background:#1a2330;margin:24px 0}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 應用程式的 Logo -->
-        <img src="https://stockcoding.github.io/bounce100/res/GameIcon.png" alt="App Logo" width="100">
-        <h1>Bounce100</h1>
-
-
-        <h3>遊戲簡介</h3>
-		<ul>
-			<li>歡迎來到最刺激的彈跳挑戰遊戲！</li>
-			<li>玩家透過不斷彈跳來累積分數，達到 100 分即可獲得積分。</li>
-			<li>累積的積分越多，排行榜名次就越高，與全球玩家一較高下！</li>
-		</ul>
-		<br>
-
-		<h3>Game Description</h3>
-		<ul>
-			<li>Welcome to the ultimate bouncing challenge!</li>
-			<li>Keep bouncing to earn points — every 100 points gives you one score.</li>
-			<li>The more scores you collect, the higher you climb on the global leaderboard!</li>
-		</ul>
-
-        <h3>App Screenshots</h3>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <img src="https://stockcoding.github.io/bounce100/res/screenshot1.jpg" alt="遊戲畫面" style="width: 48%; max-width: 400px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2);">
-            <img src="https://stockcoding.github.io/bounce100/res/screenshot2.jpg" alt="遊戲畫面" style="width: 48%; max-width: 400px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.2);">
+  <div class="container">
+    <div class="card">
+      <!-- Header -->
+      <header>
+        <img src="./res/GameIcon.png" alt="App Icon" class="logo" />
+        <div>
+          <h1><span data-game-full></span></h1>
+          <p class="subtitle">
+            <span data-tagline-zh>累積分數、拿積分、衝排行榜！</span>
+            <span class="muted">/</span>
+            <span data-tagline-en>Climb the global leaderboard!</span>
+          </p>
+          <div class="row" aria-hidden="true">
+            <span class="pill">Competitive</span>
+            <span class="pill">Leaderboard</span>
+            <span class="pill">Casual Skill</span>
+          </div>
         </div>
-		
-        <h3>隱私權政策</h3>
-        <ul>
-            <li>
-                本應用可能會收集您的電子郵件地址、裝置資訊及使用數據。請參考以下連結以了解更多細節：<br>
-                <a href="stockcoding.github.io/bounce100/privacy-policy.html" target="_blank">
-                    https://bonuce100.github.io/privacy-policy.html
-                </a>
-            </li>
-        </ul>
-        <br>
+      </header>
 
-        <h3>聯繫我們</h3>
-        <p>如果您有任何疑問，您可以通過以下方式聯繫我們：</p>
+      <!-- Game Description (ZH / EN) -->
+      <div class="grid grid-2">
+        <section>
+          <h2>遊戲簡介</h2>
+          <ul>
+            <li>歡迎來到最刺激的彈跳挑戰遊戲！</li>
+            <li>玩家透過不斷彈跳來累積分數，<strong>每累積 100 分即可獲得 1 點積分</strong>。</li>
+            <li>積分越多，排行榜名次越高，與全球玩家一較高下！</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Game Description</h2>
+          <ul>
+            <li>Welcome to the ultimate bouncing challenge!</li>
+            <li>Keep bouncing to earn points — <strong>every 100 points grants 1 score</strong>.</li>
+            <li>Collect more scores to climb the global leaderboard and compete worldwide!</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Screenshots -->
+      <section>
+        <h2>App Screenshots</h2>
+        <div class="screens">
+          <img class="shot" src="./res/screenshot1.jpg" alt="Gameplay screenshot 1" />
+          <img class="shot" src="./res/screenshot2.jpg" alt="Gameplay screenshot 2" />
+        </div>
+      </section>
+
+      <div class="hr"></div>
+
+      <!-- Privacy -->
+      <section>
+        <h2>隱私權政策 / Privacy Policy</h2>
+        <p class="muted">排行榜屬於資料收集的一部分，已在政策中清楚說明用途與範圍。</p>
+        <div class="grid grid-2">
+          <div>
+            <ul>
+              <li>本應用可能會收集您的暱稱、分數、裝置資訊與使用數據，僅用於排行榜顯示與體驗分析。</li>
+              <li>詳細內容請見：
+                <a href="https://stockcoding.github.io/bounce100/privacy-policy.html" target="_blank" rel="noopener">隱私權政策</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>This app may collect your nickname, scores, device info, and usage data for leaderboard display and experience analysis.</li>
+              <li>If third-party login (e.g., Google Sign-In) is used, only necessary public information is accessed to create player records.</li>
+              <li>For full details, see:
+                <a href="https://stockcoding.github.io/bounce100/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="hr"></div>
+
+      <!-- Contact -->
+      <section>
+        <h2>聯繫我們 / Contact</h2>
         <ul>
-            <li>請至 <a href="https://linktr.ee/stockcoding">聯繫方式</a> 聯繫我們。</li>
-            <li>電子郵件：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
+          <li>Linktree：<a href="https://linktr.ee/stockcoding" target="_blank" rel="noopener">https://linktr.ee/stockcoding</a></li>
+          <li>Email：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
         </ul>
+      </section>
+
+      <footer>
+        © <span id="y"></span> <span data-site-title></span>. All rights reserved.
+      </footer>
     </div>
+  </div>
+
+  <!-- Variables & Injection -->
+  <script>
+    // === 只要改這三個常數，其餘會自動同步 ===
+    const GAME_NAME_EN = "Bounce100";
+    const GAME_NAME_ZH = "彈跳100";
+    const SITE_TITLE   = "StockCoding";
+
+    // === 進階（可選）===
+    const TAGLINE_ZH = "累積分數、拿積分、衝排行榜！";
+    const TAGLINE_EN = "Climb the global leaderboard!";
+
+    // 組合字串
+    const GAME_NAME_FULL = `${GAME_NAME_EN}（${GAME_NAME_ZH}）`;
+    const PAGE_TITLE = `${GAME_NAME_FULL}｜${SITE_TITLE}`;
+    const DESC_ZH = `${GAME_NAME_FULL} — 累積分數、拿積分、衝排行榜的競技彈跳遊戲。`;
+    const DESC_EN = `Keep bouncing — collect scores and climb the global leaderboard in ${GAME_NAME_EN}.`;
+
+    // 批次注入
+    const setText = (sel, text) => document.querySelectorAll(sel).forEach(el => el.textContent = text);
+    setText('[data-game-en]', GAME_NAME_EN);
+    setText('[data-game-zh]', GAME_NAME_ZH);
+    setText('[data-game-full]', GAME_NAME_FULL);
+    setText('[data-site-title]', SITE_TITLE);
+    setText('[data-tagline-zh]', TAGLINE_ZH);
+    setText('[data-tagline-en]', TAGLINE_EN);
+
+    // 動態標題/描述/OG
+    document.title = PAGE_TITLE;
+    const ensureMeta = (selector, attr, name) => {
+      let el = document.querySelector(selector);
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el); }
+      return el;
+    };
+    ensureMeta('meta[name="description"]', 'name', 'description').setAttribute('content', `${DESC_ZH}`);
+    ensureMeta('meta[property="og:title"]', 'property', 'og:title').setAttribute('content', GAME_NAME_FULL);
+    ensureMeta('meta[property="og:description"]', 'property', 'og:description').setAttribute('content', `${DESC_ZH}`);
+    // 年份
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
