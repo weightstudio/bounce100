@@ -1,10 +1,10 @@
+<!-- ✅ 修改後版本：預設英文、隱私權連結完整路徑 -->
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- 將由 JS 注入 -->
   <title>Loading…</title>
   <meta name="description" content="Loading…" />
 
@@ -33,25 +33,17 @@
     .subtitle{margin:4px 0 0;color:var(--muted);font-size:14px}
     h2{font-size:20px;margin:22px 0 10px}
     .hr{height:1px;background:#1a2330;margin:22px 0}
-    footer{color:#99a4b8;font-size:13px;margin-top:22px}
-
+    footer{color:#99a4b8;font-size:13px;margin-top:22px;text-align:center}
     .row{display:flex;gap:10px;flex-wrap:wrap}
     .pill{background:#0e1621;border:1px solid #1a2330;color:#cfe0ff;border-radius:999px;padding:6px 12px;font-size:12px}
-
-    /* screenshots */
     .screens{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
     .shot{width:100%;max-width:300px;height:auto;border-radius:14px;border:1px solid #1b2432;box-shadow:0 4px 10px rgba(0,0,0,.35);object-fit:cover}
     @media (min-width: 900px){ .shot{ max-width:360px } }
-
-    /* 單一語言切換器（全站生效） */
     .lang-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
     .lang-btn{padding:8px 14px;border:1px solid #1a2330;background:#0e1621;color:#cfe0ff;border-radius:10px;cursor:pointer;font-size:14px}
     .lang-btn[aria-selected="true"]{outline:2px solid rgba(77,163,255,.5)}
-
-    /* 語系內容顯示/隱藏 */
     [data-lang]{display:none}
     [data-lang].is-active{display:block}
-
     ul{margin:0;padding-left:18px}
     .muted{color:var(--muted)}
   </style>
@@ -59,7 +51,6 @@
 <body>
   <div class="container">
     <div class="card">
-      <!-- Header -->
       <header>
         <img src="./res/GameIcon.png" alt="App Icon" class="logo" />
         <div>
@@ -77,38 +68,34 @@
         </div>
       </header>
 
-      <!-- Game Description（唯一的語言切換器） -->
       <section id="desc-scope">
-        <h2><span data-i18n="desc">遊戲簡介</span></h2>
-
-        <!-- ✅ 唯一的語言切換按鈕 -->
+        <h2><span data-i18n="desc">Game Description</span></h2>
         <div class="lang-tabs" role="tablist" aria-label="Language">
-          <button id="btn-zh" class="lang-btn" data-switch-lang="zh" role="tab" aria-selected="true">中文</button>
-          <button id="btn-en" class="lang-btn" data-switch-lang="en" role="tab" aria-selected="false">English</button>
+          <button id="btn-en" class="lang-btn" data-switch-lang="en" role="tab" aria-selected="true">English</button>
+          <button id="btn-zh" class="lang-btn" data-switch-lang="zh" role="tab" aria-selected="false">中文</button>
         </div>
 
-        <!-- ZH -->
-        <div data-lang="zh" class="is-active" role="tabpanel">
-          <ul>
-            <li>歡迎來到最刺激的彈跳挑戰遊戲！</li>
-            <li>玩家透過不斷彈跳來累積分數，<strong>每累積 100 分即可獲得 1 點積分</strong>。</li>
-            <li>積分越多，排行榜名次就越高，和全球玩家一較高下！</li>
-          </ul>
-        </div>
-
-        <!-- EN -->
-        <div data-lang="en" role="tabpanel" aria-hidden="true">
+        <!-- EN (Default) -->
+        <div data-lang="en" class="is-active" role="tabpanel">
           <ul>
             <li>Welcome to the ultimate bouncing challenge!</li>
             <li>Keep bouncing to earn points — <strong>every 100 points grants 1 score</strong>.</li>
             <li>Collect more scores to climb the global leaderboard and compete worldwide!</li>
           </ul>
         </div>
+
+        <!-- ZH -->
+        <div data-lang="zh" role="tabpanel" aria-hidden="true">
+          <ul>
+            <li>歡迎來到最刺激的彈跳挑戰遊戲！</li>
+            <li>玩家透過不斷彈跳來累積分數，<strong>每累積 100 分即可獲得 1 點積分</strong>。</li>
+            <li>積分越多，排行榜名次就越高，和全球玩家一較高下！</li>
+          </ul>
+        </div>
       </section>
 
-      <!-- Screenshots（標題跟著語言切換；內容共用） -->
       <section>
-        <h2><span data-i18n="screenshots">應用程式畫面預覽</span></h2>
+        <h2><span data-i18n="screenshots">App Screenshots</span></h2>
         <div class="screens">
           <img class="shot" src="./res/screenshot1.jpg" alt="Gameplay screenshot 1" />
           <img class="shot" src="./res/screenshot2.jpg" alt="Gameplay screenshot 2" />
@@ -117,29 +104,26 @@
 
       <div class="hr"></div>
 
-      <!-- Privacy（文案為通用平台寫法） -->
       <section>
-        <h2><span data-i18n="privacy">隱私權政策</span></h2>
-        <p class="muted" data-i18n="privacy-note">排行榜與帳號資料可能由平台（如 Google Play Games 或 Apple Game Center）管理，詳見完整政策。</p>
+        <h2><span data-i18n="privacy">Privacy Policy</span></h2>
+        <p class="muted" data-i18n="privacy-note">Leaderboard and account data may be managed by platforms (e.g., Google Play Games or Apple Game Center). See full policy below.</p>
 
-        <!-- ZH -->
-        <div data-lang="zh" class="is-active">
-          <ul>
-            <li>本應用可能會收集您的暱稱、分數、裝置資訊與使用數據，僅用於排行榜顯示與體驗分析。</li>
-            <li>若使用平台登入（如 Google Play Games / Sign in with Apple / Game Center），僅存取建立遊戲紀錄所需之必要資訊。</li>
-            <li>如需刪除或撤銷資料與連結，請依各平台帳號設定操作；詳細說明見：
-              <a href="./privacy-policy.html" target="_blank" rel="noopener">隱私權政策</a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- EN -->
-        <div data-lang="en" aria-hidden="true">
+        <div data-lang="en" class="is-active">
           <ul>
             <li>This app may collect your nickname, scores, device info, and usage data for leaderboard display and experience analysis.</li>
             <li>If platform sign-in is used (e.g., Google Play Games / Sign in with Apple / Game Center), only the minimum required info is accessed to create records.</li>
             <li>For data deletion or unlinking, please use the respective platform account settings; see details in the
-              <a href="./privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+              <a href="https://weightstudio.github.io/bounce100/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+            </li>
+          </ul>
+        </div>
+
+        <div data-lang="zh" aria-hidden="true">
+          <ul>
+            <li>本應用可能會收集您的暱稱、分數、裝置資訊與使用數據，僅用於排行榜顯示與體驗分析。</li>
+            <li>若使用平台登入（如 Google Play Games / Sign in with Apple / Game Center），僅存取建立遊戲紀錄所需之必要資訊。</li>
+            <li>如需刪除或撤銷資料與連結，請依各平台帳號設定操作；詳細說明見：
+              <a href="https://weightstudio.github.io/bounce100/privacy-policy.html" target="_blank" rel="noopener">隱私權政策</a>。
             </li>
           </ul>
         </div>
@@ -147,29 +131,24 @@
 
       <div class="hr"></div>
 
-      <!-- Contact -->
       <section>
-        <h2>
-          <span data-i18n="contact">聯繫我們</span>
-        </h2>
+        <h2><span data-i18n="contact">Contact</span></h2>
         <ul>
-          <li>Email：<a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
+          <li>Email: <a href="mailto:weightstock@gmail.com">weightstock@gmail.com</a></li>
         </ul>
       </section>
 
       <footer>
-        © <span id="y"></span> <span data-site-title></span>. All rights reserved.
+        © <span id="y"></span> <span data-site-title></span>. 
+        <a href="https://weightstudio.github.io/bounce100/privacy-policy.html" rel="noopener">Privacy Policy</a> · 
+        All rights reserved.
       </footer>
     </div>
   </div>
 
-  <!-- 變數注入 + 全站語言切換（只有一組按鈕） -->
   <script>
-    // ===== 基本常數（只改這裡） =====
-    const GAME_NAME_EN = "Bounce100";    // 只顯示英文名稱
-    const SITE_TITLE   = "Bounce100";  // 站名（頁尾/OG）
-
-    // 多語字典（標題/提示）
+    const GAME_NAME_EN = "Bounce100";
+    const SITE_TITLE   = "Bounce100";
     const I18N = {
       zh: {
         metaTitle: (name)=> `${name} | 首頁`,
@@ -186,12 +165,11 @@
         desc: "Game Description",
         screenshots: "App Screenshots",
         privacy: "Privacy Policy",
-        "privacy-note": "Leaderboard and account data may be managed by platforms (e.g., Google Play Games or Apple Game Center). See full policy.",
+        "privacy-note": "Leaderboard and account data may be managed by platforms (e.g., Google Play Games or Apple Game Center). See full policy below.",
         contact: "Contact",
       }
     };
 
-    // ===== 注入共用文字 =====
     const ensureMeta = (q,a,n)=>{let el=document.querySelector(q);if(!el){el=document.createElement('meta');el.setAttribute(a,n);document.head.appendChild(el);}return el;}
     const setMeta = (lang)=>{
       const dict = I18N[lang];
@@ -202,12 +180,10 @@
       document.documentElement.lang = (lang === 'en' ? 'en' : 'zh-Hant');
     };
 
-    // 固定注入顯示名稱與站名
     document.querySelectorAll('[data-game-name]').forEach(el=>el.textContent = GAME_NAME_EN);
     document.querySelectorAll('[data-site-title]').forEach(el=>el.textContent = SITE_TITLE);
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // 同步所有 i18n 文案
     const applyI18n = (lang)=>{
       const map = I18N[lang] || {};
       document.querySelectorAll('[data-i18n]').forEach(el=>{
@@ -216,42 +192,30 @@
       });
     };
 
-    // ===== 單一語言切換器控制全站 =====
     (function(){
       const KEY='lang_pref';
       const btnZh = document.getElementById('btn-zh');
       const btnEn = document.getElementById('btn-en');
 
       const apply = (lang)=>{
-        // 顯示/隱藏所有 data-lang
         document.querySelectorAll('[data-lang]').forEach(p=>{
           const on = p.getAttribute('data-lang')===lang;
           p.classList.toggle('is-active', on);
           p.setAttribute('aria-hidden', !on);
         });
-        // 按鈕狀態
         btnZh.setAttribute('aria-selected', lang==='zh');
         btnEn.setAttribute('aria-selected', lang==='en');
-        // 更新文案與 SEO/OG
         applyI18n(lang);
         setMeta(lang);
       };
 
-      const initLang = localStorage.getItem(KEY) || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+      // ✅ 預設英語
+      const initLang = localStorage.getItem(KEY) || 'en';
       apply(initLang);
 
-      // 綁定按鈕
       btnZh.addEventListener('click', ()=>{ localStorage.setItem(KEY,'zh'); apply('zh'); });
       btnEn.addEventListener('click', ()=>{ localStorage.setItem(KEY,'en'); apply('en'); });
     })();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
